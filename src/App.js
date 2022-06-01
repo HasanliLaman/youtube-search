@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [query, setQuery] = useState("learn react");
   const [data, setData] = useState([]);
+  const [exceed, setExceed] = useState(false);
 
   useEffect(() => {
     const getData = async function () {
@@ -15,6 +16,8 @@ function App() {
         const queryData = await res.json();
         if (!queryData.error) {
           setData(queryData);
+        } else {
+          setExceed(true);
         }
       } catch (e) {
         throw new Error(e);
@@ -26,7 +29,7 @@ function App() {
   return (
     <main>
       <Navbar setQuery={setQuery} />
-      <VideoContainer data={data} />
+      <VideoContainer data={data} isExceed={exceed} />
     </main>
   );
 }

@@ -18,7 +18,12 @@ const VideoContainer = (props) => {
       />
     ));
   }
-  return <section className="video-container">{list}</section>;
+  return (
+    <section className="video-container">
+      {list}
+      {props.isExceed && <h1>You have exceeded the daily search quote!</h1>}
+    </section>
+  );
 };
 
 export default VideoContainer;

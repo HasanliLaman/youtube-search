@@ -8,6 +8,11 @@
   column-gap: 2rem;
 }
 
+.video-container h1 {
+  color: #fff;
+  text-align: center;
+}
+
 @media (min-width: 650px) {
   .video-container {
     grid-template-columns: repeat(2, auto);
