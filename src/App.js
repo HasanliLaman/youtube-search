@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import VideoContainer from "./components/Main/VideoContainer";
+import Navbar from "./components/Navbar/Navbar";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [query, setQuery] = useState("learn react");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getData = async function () {
+      try {
+        const res = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&type=video&key=AIzaSyBH3dvj32-E9JgTaY9FtOaSaQkZ_BJBY60&q=${query}`
+        );
+        const queryData = await res.json();
+        if (!queryData.error) {
+          setData(queryData);
+        }
+      } catch (e) {
+        throw new Error(e);
+      }
+    };
+    getData();
+  }, [query]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Navbar setQuery={setQuery} />
+      <VideoContainer data={data} />
+    </main>
   );
 }
 
