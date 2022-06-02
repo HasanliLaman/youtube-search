@@ -11,7 +11,7 @@ function App() {
     const getData = async function () {
       try {
         const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&type=video&key=AIzaSyBH3dvj32-E9JgTaY9FtOaSaQkZ_BJBY60&q=${query}`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&type=video&key=AIzaSyDAxDL3-C-wCpP7p_uA4l1v1VW_ei1GNSE&q=${query}`
         );
         const queryData = await res.json();
         if (!queryData.error) {
